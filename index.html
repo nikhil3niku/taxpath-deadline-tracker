@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Compliance Deadline Tracker - TaxPath India</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Tax Compliance Deadline Tracker</h1>
+                    <p class="subtitle">Stay compliant with GST, Income Tax & ROC deadlines</p>
+                    <p class="current-date">Today: <span id="current-date"></span></p>
+                </div>
+                <div class="logo">
+                    <span class="brand">TaxPath India</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for forms, deadlines, or categories..." class="search-input">
+                <button class="search-btn" onclick="performSearch()">Search</button>
+            </div>
+        </div>
+
+        <!-- Main Navigation Tabs -->
+        <nav class="main-nav">
+            <button class="nav-tab active" onclick="switchTab('gst')">GST Deadlines</button>
+            <button class="nav-tab" onclick="switchTab('income-tax')">Income Tax Deadlines</button>
+            <button class="nav-tab" onclick="switchTab('roc')">ROC Deadlines</button>
+            <button class="nav-tab" onclick="switchTab('quick-reference')">Quick Reference</button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="content">
+            <!-- GST Section -->
+            <section id="gst-section" class="tab-content active">
+                <div class="section-header">
+                    <h2>GST Compliance Deadlines</h2>
+                    <div class="sub-nav">
+                        <button class="sub-tab active" onclick="switchSubTab('gst', 'monthly')">Monthly Returns</button>
+                        <button class="sub-tab" onclick="switchSubTab('gst', 'quarterly')">Quarterly Returns</button>
+                        <button class="sub-tab" onclick="switchSubTab('gst', 'annual')">Annual Returns</button>
+                    </div>
+                </div>
+                
+                <div id="gst-monthly" class="sub-content active">
+                    <div class="deadline-grid" id="gst-monthly-grid"></div>
+                </div>
+                
+                <div id="gst-quarterly" class="sub-content">
+                    <div class="deadline-grid" id="gst-quarterly-grid"></div>
+                </div>
+                
+                <div id="gst-annual" class="sub-content">
+                    <div class="deadline-grid" id="gst-annual-grid"></div>
+                </div>
+            </section>
+
+            <!-- Income Tax Section -->
+            <section id="income-tax-section" class="tab-content">
+                <div class="section-header">
+                    <h2>Income Tax Compliance Deadlines</h2>
+                    <div class="sub-nav">
+                        <button class="sub-tab active" onclick="switchSubTab('income-tax', 'itr')">ITR Filing</button>
+                        <button class="sub-tab" onclick="switchSubTab('income-tax', 'advance')">Advance Tax</button>
+                        <button class="sub-tab" onclick="switchSubTab('income-tax', 'tds')">TDS Compliance</button>
+                    </div>
+                </div>
+                
+                <div id="income-tax-itr" class="sub-content active">
+                    <div class="deadline-grid" id="income-tax-itr-grid"></div>
+                </div>
+                
+                <div id="income-tax-advance" class="sub-content">
+                    <div class="deadline-grid" id="income-tax-advance-grid"></div>
+                </div>
+                
+                <div id="income-tax-tds" class="sub-content">
+                    <div class="deadline-grid" id="income-tax-tds-grid"></div>
+                </div>
+            </section>
+
+            <!-- ROC Section -->
+            <section id="roc-section" class="tab-content">
+                <div class="section-header">
+                    <h2>ROC Compliance Deadlines</h2>
+                    <div class="sub-nav">
+                        <button class="sub-tab active" onclick="switchSubTab('roc', 'annual')">Annual Filings</button>
+                        <button class="sub-tab" onclick="switchSubTab('roc', 'periodic')">Periodic Filings</button>
+                        <button class="sub-tab" onclick="switchSubTab('roc', 'event')">Event-based</button>
+                    </div>
+                </div>
+                
+                <div id="roc-annual" class="sub-content active">
+                    <div class="deadline-grid" id="roc-annual-grid"></div>
+                </div>
+                
+                <div id="roc-periodic" class="sub-content">
+                    <div class="deadline-grid" id="roc-periodic-grid"></div>
+                </div>
+                
+                <div id="roc-event" class="sub-content">
+                    <div class="deadline-grid" id="roc-event-grid"></div>
+                </div>
+            </section>
+
+            <!-- Quick Reference Section -->
+            <section id="quick-reference-section" class="tab-content">
+                <div class="section-header">
+                    <h2>Upcoming Deadlines - Next 30 Days</h2>
+                    <div class="urgency-filters">
+                        <button class="filter-btn active" onclick="filterByUrgency('all')">All</button>
+                        <button class="filter-btn overdue" onclick="filterByUrgency('overdue')">Overdue</button>
+                        <button class="filter-btn urgent" onclick="filterByUrgency('urgent')">Due Soon</button>
+                        <button class="filter-btn upcoming" onclick="filterByUrgency('upcoming')">Upcoming</button>
+                    </div>
+                </div>
+                <div class="deadline-grid" id="quick-reference-grid"></div>
+            </section>
+        </main>
+
+        <!-- Expanded Card Modal -->
+        <div id="card-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
